@@ -1,0 +1,382 @@
+/* ===== Variables & Resets ===== */
+:root {
+  --sidebar-width: 220px;
+  --spacing: 1.5rem;
+  --spacing-half: 0.75rem;
+  --radius: 8px;
+  --primary: #0052cc;
+  --primary-hover: #0041a8;
+  --on-primary: #ffffff;
+  --danger: #e74c3c;
+  --danger-hover: #c0392b;
+  --bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --border: #e0e0e0;
+  --text: #2c3e50;
+  --text-light: #7f8c8d;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --font: 'Helvetica Neue', Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ===== Layout ===== */
+.resumeBuilder {
+  display: flex;
+  min-height: 100vh;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: var(--card-bg);
+  border-right: 1px solid var(--border);
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--spacing);
+  z-index: 100;
+}
+
+.content {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  padding: var(--spacing);
+}
+
+/* ===== Navigation Buttons ===== */
+.navBtn {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.navBtn:hover {
+  background: var(--bg);
+}
+.navBtn.active {
+  background: var(--bg);
+  border-left: 4px solid var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* ===== Section Cards ===== */
+.personalDetails,
+.experience,
+.education,
+.project {
+  background: var(--card-bg);
+  padding: var(--spacing);
+  margin-bottom: var(--spacing);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+}
+
+/* ===== Forms (one field per line) ===== */
+.personalDetailsForm,
+.experienceForm,
+.educationForm,
+.projectForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+}
+
+.personalDetailsForm > div,
+.experienceForm > div,
+.educationForm > div,
+.projectForm > div {
+  width: 100%;
+}
+
+.personalDetailsForm input,
+.personalDetailsForm textarea,
+.personalDetailsForm select,
+.experienceForm input,
+.experienceForm textarea,
+.experienceForm select,
+.educationForm input,
+.educationForm textarea,
+.educationForm select,
+.projectForm input,
+.projectForm textarea,
+.projectForm select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  resize: none;
+  font-size: 1rem;
+  background: var(--card-bg);
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.personalDetailsForm input:focus,
+.personalDetailsForm textarea:focus,
+.personalDetailsForm select:focus,
+.experienceForm input:focus,
+.experienceForm textarea:focus,
+.experienceForm select:focus,
+.educationForm input:focus,
+.educationForm textarea:focus,
+.educationForm select:focus,
+.projectForm input:focus,
+.projectForm textarea:focus,
+.projectForm select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.15);
+  outline: none;
+}
+
+/* ===== Form Buttons ===== */
+.personalDetails .btn,
+.experience .btn,
+.education .btn,
+.project .btn {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing);
+  margin-top: var(--spacing);
+}
+
+.personalDetails .btn button,
+.experience .btn button,
+.education .btn button,
+.project .btn button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.personalDetails .btn button:hover,
+.experience .btn button:hover,
+.education .btn button:hover,
+.project .btn button:hover {
+  background: var(--primary-hover);
+}
+
+/* ===== Lists ===== */
+.experienceList,
+.educationList,
+.projectList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing);
+  margin-bottom: var(--spacing);
+}
+
+.tile {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.tile p:first-child {
+  margin-bottom: var(--spacing-half);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.details .info p {
+  margin: var(--spacing-half) 0;
+  font-size: 0.95rem;
+}
+
+/* ===== List Buttons ===== */
+.details .btn {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-half);
+  margin-top: var(--spacing-half);
+}
+
+.details .btn button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.details .btn button:first-of-type {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.details .btn button:first-of-type:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+.details .btn button:last-of-type {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: var(--on-primary);
+}
+
+.details .btn button:last-of-type:hover {
+  background: var(--danger-hover);
+  border-color: var(--danger-hover);
+}
+
+/* ===== Resume Preview Modal ===== */
+.resumeModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.resumeContainer {
+  position: relative;
+  background: var(--card-bg);
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.closeBtn:hover {
+  color: var(--text);
+}
+
+/* ===== Resume Content Styling ===== */
+.resumeContent h1 {
+  margin-bottom: var(--spacing-half);
+  font-size: 1.8rem;
+  color: var(--text);
+}
+
+.contactInfo span {
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+.resumeSummary {
+  margin: var(--spacing) 0;
+  padding-left: 1.25rem;
+}
+.resumeSummary li {
+  margin-bottom: var(--spacing-half);
+  line-height: 1.4;
+}
+
+.resumeContent section {
+  margin-top: var(--spacing);
+}
+.resumeContent h2 {
+  margin-bottom: var(--spacing-half);
+  font-size: 1.3rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--spacing-half);
+  color: var(--text);
+}
+
+.resumeSectionItem {
+  margin-bottom: var(--spacing);
+}
+.resumeSectionItem h3 {
+  margin-bottom: var(--spacing-half);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+.dateRange {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: var(--spacing-half);
+}
+
+/* ===== Preview Button ===== */
+.previewBtnContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--spacing);
+}
+.previewBtn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.previewBtn:hover {
+  background: var(--primary-hover);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 800px) {
+  .navbar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .navBtn {
+    flex: 1;
+    text-align: center;
+  }
+  .content {
+    margin-left: 0;
+    padding: var(--spacing);
+  }
+}
